@@ -1,28 +1,51 @@
 import processing.core.PApplet;
 
 public class FourBallsChallenge extends PApplet {
-    private final int circleSpeed = 0;
+
+    public static final int WIDTH = 640;
+    public static final int HEIGHT = 480;
+    public static final int DIAMETER = 10;
+    public static final int BALLCOUNT = 4;
+    int unitsPerFrame = 1;
+
+    FourBalls[] fourBalls = new FourBalls[BALLCOUNT];
 
     public static void main(String[] args) {
-        String[] processingArgs = {"MySketch"};
-        FourBallsChallenge fourBallsChallenge = new FourBallsChallenge();
-        PApplet.runSketch(processingArgs, fourBallsChallenge);
+        PApplet.main("FourBallsChallenge", args);
     }
-
-    final int WIDTH = 640;
-    final int HEIGHT = 480;
-    FourBalls fourBalls1;
 
     @Override
     public void settings() {
         super.settings();
         size(WIDTH, HEIGHT);
-        fourBalls1 = new FourBalls();
     }
 
+    @Override
+    public void setup() {
+        initialSetup();
+    }
+
+    private void initialSetup() {
+        for (int i = 1; i <= BALLCOUNT; i++) {
+            fourBalls[i - 1] = new FourBalls(i * HEIGHT / 5, DIAMETER, unitsPerFrame);
+            incrementUnitsPerFrame();
+        }
+    }
 
     @Override
     public void draw() {
-        fourBalls1.draw(circleSpeed + 1);
+        for (int i = 0; i < BALLCOUNT; i++) {
+            moveBalls(fourBalls[i]);
+        }
     }
+
+    private void moveBalls(FourBalls fourBalls) {
+        ellipse(fourBalls.ballSpeed, fourBalls.ballPosition, fourBalls.diameter, fourBalls.diameter);
+        fourBalls.incrementBallSpeed();
+    }
+
+    private void incrementUnitsPerFrame() {
+        unitsPerFrame += 1;
+    }
+
 }

@@ -2,12 +2,19 @@ import processing.core.PApplet;
 
 
 public class FourBalls extends PApplet {
+    int ballPosition;
+    int diameter;
+    int ballSpeed;
+    int unitsPerFrame;
 
-    private static final int HEIGHT = 480;
-    private static final int DIAMETER = 100;
+    public FourBalls(int ballPosition, int diameter, int unitsPerFrame) {
+        this.ballPosition = ballPosition;
+        this.diameter = diameter;
+        this.ballSpeed = 0;
+        this.unitsPerFrame = unitsPerFrame;
+    }
 
-    public void draw(int circleSpeed) {
-        ellipse(circleSpeed, HEIGHT / 5, DIAMETER, DIAMETER);
-        ++circleSpeed;
+    public void incrementBallSpeed() {
+        ballSpeed += unitsPerFrame;
     }
 }
