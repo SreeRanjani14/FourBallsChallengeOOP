@@ -1,15 +1,13 @@
 import processing.core.PApplet;
 
-
-public class FourBalls extends PApplet {
+public class Ball extends PApplet {
+    public static final int DIAMETER = 10;
     int ballPosition;
-    int diameter;
     int ballSpeed;
     int unitsPerFrame;
 
-    public FourBalls(int ballPosition, int diameter, int unitsPerFrame) {
+    public Ball(int ballPosition, int unitsPerFrame) {
         this.ballPosition = ballPosition;
-        this.diameter = diameter;
         this.ballSpeed = 0;
         this.unitsPerFrame = unitsPerFrame;
     }

@@ -4,11 +4,12 @@ public class FourBallsChallenge extends PApplet {
 
     public static final int WIDTH = 640;
     public static final int HEIGHT = 480;
-    public static final int DIAMETER = 10;
-    public static final int BALLCOUNT = 4;
+    public static final int BALL_COUNT = 4;
+    public static final int FRAME = 5;
+
     int unitsPerFrame = 1;
 
-    FourBalls[] fourBalls = new FourBalls[BALLCOUNT];
+    Ball[] fourBalls = new Ball[BALL_COUNT];
 
     public static void main(String[] args) {
         PApplet.main("FourBallsChallenge", args);
@@ -26,22 +27,22 @@ public class FourBallsChallenge extends PApplet {
     }
 
     private void initialSetup() {
-        for (int i = 1; i <= BALLCOUNT; i++) {
-            fourBalls[i - 1] = new FourBalls(i * HEIGHT / 5, DIAMETER, unitsPerFrame);
+        for (int index = 1; index <= BALL_COUNT; index++) {
+            fourBalls[index - 1] = new Ball(HEIGHT * index / FRAME, unitsPerFrame);
             incrementUnitsPerFrame();
         }
     }
 
     @Override
     public void draw() {
-        for (int i = 0; i < BALLCOUNT; i++) {
-            moveBalls(fourBalls[i]);
+        for (int index = 0; index < BALL_COUNT; index++) {
+            moveBalls(fourBalls[index]);
         }
     }
 
-    private void moveBalls(FourBalls fourBalls) {
-        ellipse(fourBalls.ballSpeed, fourBalls.ballPosition, fourBalls.diameter, fourBalls.diameter);
-        fourBalls.incrementBallSpeed();
+    private void moveBalls(Ball ball) {
+        ellipse(ball.ballSpeed, ball.ballPosition, Ball.DIAMETER, Ball.DIAMETER);
+        ball.incrementBallSpeed();
     }
 
     private void incrementUnitsPerFrame() {
