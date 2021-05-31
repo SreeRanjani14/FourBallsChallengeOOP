@@ -28,7 +28,7 @@ public class FourBallsChallenge extends PApplet {
 
     private void initialSetup() {
         for (int index = 1; index <= BALL_COUNT; index++) {
-            ball[index - 1] = new Ball(HEIGHT * index / FRAME, unitsPerFrame, this);
+            ball[index - 1] = new Ball(HEIGHT * index / FRAME, unitsPerFrame);
             incrementUnitsPerFrame();
         }
     }
@@ -36,7 +36,7 @@ public class FourBallsChallenge extends PApplet {
     @Override
     public void draw() {
         for (int index = 0; index < BALL_COUNT; index++) {
-            ball[index].move();
+            ball[index].move(this);
         }
     }
 
