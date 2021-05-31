@@ -12,12 +12,12 @@ public class Ball {
         this.unitsPerFrame = unitsPerFrame;
     }
 
-    public void incrementBallSpeed() {
+    public void incrementSpeed() {
         xPosition += unitsPerFrame;
     }
 
     public void move(PApplet pApplet) {
         pApplet.ellipse(xPosition, yPosition, DIAMETER, DIAMETER);
-        incrementBallSpeed();
+        incrementSpeed();
     }
 }
